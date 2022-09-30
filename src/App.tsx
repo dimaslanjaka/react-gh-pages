@@ -63,6 +63,7 @@ function App() {
 	);
 	return (
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
+			<Footer />
 			{routes}
 			{/** default not found and index to homepage */}
 			<Routes>
@@ -87,7 +88,19 @@ function App() {
 					}
 				></Route>
 			</Routes>
+			<Footer />
 		</BrowserRouter>
+	);
+}
+
+function Footer() {
+	return (
+		<footer>
+			<span>Source: </span>
+			<a href="https://github.com/dimaslanjaka/react-gh-pages">
+				https://github.com/dimaslanjaka/react-gh-pages
+			</a>
+		</footer>
 	);
 }
 

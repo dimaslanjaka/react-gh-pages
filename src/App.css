@@ -14,7 +14,12 @@ pre {
 
 .page {
 	/* top right bottom left*/
+	margin: 1em 1em 0 1em;
+}
+
+footer {
 	margin: 2px 1em 0 1em;
+	padding: 1em;
 }
 
 .App {
