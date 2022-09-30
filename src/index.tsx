@@ -24,17 +24,20 @@ if (container?.hasChildNodes()) {
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 function sendToAnalytics(metric: Metric) {
+	const val =
+		typeof metric.value !== "number" ? parseInt(metric.value) : metric.value;
+	const properties = Object.assign(metric, {
+		event_category: "web-vitals",
+		value: Math.round(metric.name === "CLS" ? val * 1000 : val), // values must be integers
+		event_label: metric.name,
+		nonInteraction: true, // avoids affecting bounce rate
+	} as Gtag.ControlParams & Gtag.EventParams & Gtag.CustomParams);
 	if (typeof window.gtag === "function") {
-		const val =
-			typeof metric.value !== "number" ? parseInt(metric.value) : metric.value;
-		const properties = Object.assign(metric, {
-			event_category: "Web Vitals",
-			eventAction: metric.name,
-			value: Math.round(metric.name === "CLS" ? val * 1000 : val), // values must be integers
-			event_label: metric.id, // id unique to current page load
-			nonInteraction: true, // avoids affecting bounce rate
-		});
-		window.gtag("event", "coreWebVitals", properties);
+		// https://developers.google.com/analytics/devguides/collection/gtagjs
+		// https://developers.google.com/gtagjs/reference/event#timing_complete
+		window.gtag("event", "coreWebVitals", {});
+	} else {
+		console.log("google analystic not installed", properties);
 	}
 }
 reportWebVitals(sendToAnalytics);
