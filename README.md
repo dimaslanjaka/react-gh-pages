@@ -4,7 +4,7 @@
 
 ## Features
 - React v18
-- Support `react-snap`
+- Google Analytics (without any plugin, you can call window.gtag everywhere)
 
 ## Step by step to using this project
 
