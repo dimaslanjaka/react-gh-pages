@@ -1,5 +1,6 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Adsense } from "./components/adsense/Adsense";
 import pages from "./data.json";
 import logo from "./logo.svg";
 
@@ -24,6 +25,15 @@ function Home(props: HomeProps) {
 				</a>
 
 				<div>{props.children}</div>
+
+				<div>
+					<Adsense
+						client="ca-pub-2188063137129806"
+						slot="2667720583"
+						format="auto"
+						data-full-width-responsive="true"
+					/>
+				</div>
 			</header>
 		</div>
 	);

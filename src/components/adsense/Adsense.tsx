@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { isDev } from "../../config";
 import { useScript } from "../../utils/useScript";
 import "./Adsense.scss";
@@ -43,12 +43,11 @@ export function Adsense({
 	children,
 	...rest
 }: AdsenseInsProps) {
-	useScript("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
+	useScript({
+		url: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+	});
 
-	// skip produce adsense ins when disabled == true
-	if (disabled) return <></>;
-
-	React.useEffect(() => {
+	useEffect(() => {
 		const p: any = {};
 		if (pageLevelAds) {
 			p.google_ad_client = client;
@@ -64,7 +63,10 @@ export function Adsense({
 		} catch {
 			// Pass
 		}
-	}, []);
+	}, [pageLevelAds, client, slot]);
+
+	// skip produce adsense ins when disabled == true
+	if (disabled) return <></>;
 
 	// auto ads test
 	if (!adTest && isDev) {
