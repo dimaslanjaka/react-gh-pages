@@ -2,6 +2,10 @@
 
 [LIVE DEMO](https://dimaslanjaka.github.io/react-gh-pages)
 
+## Features
+- React v18
+- Support `react-snap`
+
 ## Step by step to using this project
 
 change homepage url from `package.json`
