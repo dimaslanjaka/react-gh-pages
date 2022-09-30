@@ -12,3 +12,10 @@ export type DeepPartial<T> = T extends object
 			[P in keyof T]?: DeepPartial<T[P]>;
 	  }
 	: T;
+
+declare namespace NodeJS {
+	interface ProcessEnv {
+		readonly NODE_ENV: "development" | "production" | "test";
+		readonly PUBLIC_URL: string;
+	}
+}

@@ -92,6 +92,7 @@ const OutboundLink_func = (
 					</Link>
 				);
 			} else {
+				// return original <a> for external url
 				return legacy;
 			}
 		} else {

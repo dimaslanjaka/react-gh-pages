@@ -1,6 +1,13 @@
+html,
+body {
+	margin: 0px;
+	width: 100%;
+}
+
 * {
 	word-wrap: break-word;
 }
+
 /* Browser specific (not valid) styles to make preformatted text wrap */
 
 pre {
@@ -15,6 +22,7 @@ pre {
 .adsw {
 	width: 100%;
 	height: 300px;
+	border: 1px outset pink;
 }
 
 .page {

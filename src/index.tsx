@@ -9,11 +9,13 @@ import reportWebVitals from "./reportWebVitals";
 const container = document.getElementById("root");
 const AppWrapper = () => {
 	React.useEffect(() => {
+		// init google analytics
 		if (typeof window.gtag === "function") {
 			gtag("js", new Date());
 			gtag("config", GTAGID);
 		}
 	});
+
 	return (
 		<React.StrictMode>
 			<App />

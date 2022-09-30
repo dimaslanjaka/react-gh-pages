@@ -33,6 +33,7 @@ interface useScriptProps {
 	 * ignore duplication checker
 	 */
 	force?: boolean;
+	callback?: ((this: GlobalEventHandlers, ev: Event) => any) | null;
 }
 
 /**
@@ -52,8 +53,10 @@ export const useScript = ({
 	origin = "anonymous",
 	force = false,
 }: useScriptProps) => {
+	// component will unmount
 	useEffect(() => {
 		if (usedScript.includes(url) && !force) return;
+		//console.log("calling", url);
 		const script = document.createElement("script");
 		usedScript.push(url);
 		script.src = url;

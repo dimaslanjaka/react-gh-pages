@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { isDev } from "../../config";
-import { useScript } from "../../utils/useScript";
 import "./Adsense.scss";
 
 export interface AdsenseInsProps {
 	[key: string]: any;
+	key?: string;
 	className?: string;
 	style?: React.CSSProperties;
 	client: string;
@@ -23,6 +23,7 @@ export interface AdsenseInsProps {
  * Adsense Component
  * @param attributes
  * @returns
+ * @link https://support.google.com/adsense/answer/9042142?hl=en
  * @example
  * // remove data-ad- -> becomes single word
  * // data-ad-layout -> layout, data-ad-slot -> slot
@@ -32,6 +33,7 @@ export function Adsense({
 	className = "",
 	style = { display: "block" },
 	client,
+	key = Math.random().toString(),
 	slot,
 	disabled = false,
 	layout = "",
@@ -43,27 +45,37 @@ export function Adsense({
 	children,
 	...rest
 }: AdsenseInsProps) {
-	useScript({
+	/*useScript({
 		url: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-	});
+	});*/
 
+	// component did mount
 	useEffect(() => {
-		const p: any = {};
+		const p: AdsObject = {
+			google_ad_client: "",
+		};
 		if (pageLevelAds) {
 			p.google_ad_client = client;
 			p.enable_page_level_ads = true;
 		}
 
-		try {
-			if (typeof window === "object") {
-				((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
-					p
-				);
-			}
-		} catch {
-			// Pass
+		if (typeof window === "object") {
+			window.adsense_items.push(p);
+			window.adsbygoogle = window.adsbygoogle || [];
+			window.adsbygoogle.push(p);
+
+			const script = document.createElement("script");
+			script.src =
+				"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+			script.async = true;
+			document.body.appendChild(script);
+			return () => {
+				document.body.removeChild(script);
+			};
 		}
-	}, [pageLevelAds, client, slot]);
+	}, [client, pageLevelAds]);
+
+	// component did unmount
 
 	// skip produce adsense ins when disabled == true
 	if (disabled) return <></>;
@@ -73,19 +85,18 @@ export function Adsense({
 		adTest = "true";
 	}
 
+	const properties: Record<string, any> = rest;
+	properties.style = style || { display: "block" };
+	properties["data-ad-client"] = client;
+	properties["data-ad-slot"] = slot;
+	if (layout.length > 0) properties["data-ad-layout"] = layout;
+	if (layoutKey.length > 0) properties["data-ad-layout-key"] = layoutKey;
+	if (format.length > 0) properties["data-ad-format"] = format;
+	if (responsive === "true")
+		properties["data-full-width-responsive"] = responsive;
+	if (adTest === "true") properties["data-adtest"] = adTest;
 	return (
-		<ins
-			className={`adsbygoogle ${className}`}
-			style={style}
-			data-ad-client={client}
-			data-ad-slot={slot}
-			data-ad-layout={layout}
-			data-ad-layout-key={layoutKey}
-			data-ad-format={format}
-			data-full-width-responsive={responsive}
-			data-adtest={adTest}
-			{...rest}
-		>
+		<ins key={key} className={`adsbygoogle ${className}`} {...properties}>
 			{children}
 		</ins>
 	);

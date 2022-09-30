@@ -29,10 +29,11 @@ function Home(props: HomeProps) {
 
 				<div className="adsw">
 					<Adsense
+						style={{ display: "block" }}
 						client="ca-pub-2188063137129806"
 						slot="2667720583"
 						format="auto"
-						data-full-width-responsive="true"
+						responsive="true"
 					/>
 				</div>
 			</header>

@@ -3,7 +3,7 @@
 /// <reference types="node" />
 /// <reference types="react" />
 /// <reference types="react-dom" />
-// uncomment below library when you using some below
+// uncomment below library when you using some below library
 // / <reference types="jquery" />
 // / <reference types="bootstrap" />
 
@@ -28,9 +28,12 @@ declare namespace JSX {
 	}
 }
 
-declare namespace NodeJS {
-	interface ProcessEnv {
-		readonly NODE_ENV: "development" | "production" | "test";
-		readonly PUBLIC_URL: string;
-	}
+interface AdsObject {
+	[key: string]: any;
+	google_ad_client: string;
+	enable_page_level_ads?: boolean;
+}
+interface Window {
+	adsbygoogle: { [key: string]: any }[];
+	adsense_items: AdsObject[];
 }
