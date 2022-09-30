@@ -27,7 +27,7 @@ function Home(props: HomeProps) {
 
 				<div>{props.children}</div>
 
-				<div>
+				<div className="adsw">
 					<Adsense
 						client="ca-pub-2188063137129806"
 						slot="2667720583"

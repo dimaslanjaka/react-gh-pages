@@ -1,5 +1,8 @@
 /// <reference types="react-scripts" />
 /// <reference types="gtag.js" />
+/// <reference types="node" />
+/// <reference types="react" />
+/// <reference types="react-dom" />
 // uncomment below library when you using some below
 // / <reference types="jquery" />
 // / <reference types="bootstrap" />
@@ -22,5 +25,12 @@ declare namespace JSX {
 	interface IntrinsicElements {
 		[key: string]: any;
 		button: ExtendedButton;
+	}
+}
+
+declare namespace NodeJS {
+	interface ProcessEnv {
+		readonly NODE_ENV: "development" | "production" | "test";
+		readonly PUBLIC_URL: string;
 	}
 }

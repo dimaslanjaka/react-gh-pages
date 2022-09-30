@@ -1,3 +1,6 @@
+/**
+ * Google analytics v3
+ */
 export const GTAGID = "UA-106238155-1";
 /**
  * is current runtime is development?
