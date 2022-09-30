@@ -21,4 +21,4 @@ npm run deploy
 
 versions
 
-[react v17](e027555de1343ea38319dd43480d1678d10b56e9)
+[react v17](https://github.com/dimaslanjaka/react-gh-pages/commit/e027555de1343ea38319dd43480d1678d10b56e9)
