@@ -19,6 +19,15 @@ export interface AdsenseInsProps {
 	children?: React.ReactNode;
 }
 
+/**
+ * Adsense Component
+ * @param attributes
+ * @returns
+ * @example
+ * // remove data-ad- -> becomes single word
+ * // data-ad-layout -> layout, data-ad-slot -> slot
+ * <Adsense client="ca-pub-xxx" slot="123456" layout="responsive" style={{ display: block }} />
+ */
 export function Adsense({
 	className = "",
 	style = { display: "block" },
