@@ -5,6 +5,7 @@
 ## Features
 - React v18
 - Google Analytics (without any plugin, you can call window.gtag everywhere)
+- Google Adsense (without any plugin, import <Adsense /> everywhere)
 
 ## Step by step to using this project
 
