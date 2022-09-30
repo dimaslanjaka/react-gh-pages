@@ -18,3 +18,7 @@ deploy to github pages
 ```bash
 npm run deploy
 ```
+
+versions
+
+[react v17](e027555de1343ea38319dd43480d1678d10b56e9)
