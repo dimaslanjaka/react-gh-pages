@@ -1,0 +1,81 @@
+import React from "react";
+import { isDev } from "../../config";
+import { useScript } from "../../utils/useScript";
+import "./Adsense.scss";
+
+export interface AdsenseInsProps {
+	[key: string]: any;
+	className?: string;
+	style?: React.CSSProperties;
+	client: string;
+	slot: string;
+	layout?: string;
+	layoutKey?: string;
+	format?: string;
+	responsive?: string;
+	pageLevelAds?: boolean;
+	adTest?: string;
+	disabled?: boolean;
+	children?: React.ReactNode;
+}
+
+export function Adsense({
+	className = "",
+	style = { display: "block" },
+	client,
+	slot,
+	disabled = false,
+	layout = "",
+	layoutKey = "",
+	format = "auto",
+	responsive = "false",
+	pageLevelAds = false,
+	adTest,
+	children,
+	...rest
+}: AdsenseInsProps) {
+	useScript("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
+
+	// skip produce adsense ins when disabled == true
+	if (disabled) return <></>;
+
+	React.useEffect(() => {
+		const p: any = {};
+		if (pageLevelAds) {
+			p.google_ad_client = client;
+			p.enable_page_level_ads = true;
+		}
+
+		try {
+			if (typeof window === "object") {
+				((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
+					p
+				);
+			}
+		} catch {
+			// Pass
+		}
+	}, []);
+
+	// auto ads test
+	if (!adTest && isDev) {
+		adTest = "true";
+	}
+
+	return (
+		<ins
+			className={`adsbygoogle ${className}`}
+			style={style}
+			data-ad-client={client}
+			data-ad-slot={slot}
+			data-ad-layout={layout}
+			data-ad-layout-key={layoutKey}
+			data-ad-format={format}
+			data-full-width-responsive={responsive}
+			data-adtest={adTest}
+			{...rest}
+		>
+			{children}
+		</ins>
+	);
+}
