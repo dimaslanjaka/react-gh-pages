@@ -1,5 +1,20 @@
 * {
-	color: whitesmoke;
+	word-wrap: break-word;
+}
+/* Browser specific (not valid) styles to make preformatted text wrap */
+
+pre {
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+	width: 100%;
+}
+
+.page {
+	/* top right bottom left*/
+	margin: 2px 1em 0 1em;
 }
 
 .App {
@@ -25,6 +40,9 @@
 	align-items: center;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
+	color: white;
+}
+.App-header * {
 	color: white;
 }
 

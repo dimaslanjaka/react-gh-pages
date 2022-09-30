@@ -30,18 +30,31 @@ function Home(props: HomeProps) {
 }
 
 function PageItem(props: typeof pages[number]) {
-	console.log(props);
-	return <></>;
+	return (
+		<div className="page">
+			<div>
+				<Link to="/">Go Home</Link>
+			</div>
+			<div>ID: {props.id}</div>
+			<div>
+				<pre>
+					<code>{JSON.stringify(props, null, 2)}</code>
+				</pre>
+			</div>
+		</div>
+	);
 }
 
 function App() {
 	const routes = (
 		<Routes>
 			{pages.map((page) => {
+				const pathname = process.env.PUBLIC_URL + "/page/" + page.id + ".html";
+				//console.log(pathname);
 				return (
 					<Route
 						key={page.id}
-						path={"/page/" + page.id + ".html"}
+						path={pathname}
 						element={<PageItem {...page} />}
 					></Route>
 				);
@@ -51,9 +64,10 @@ function App() {
 	return (
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			{routes}
+			{/** default not found and index to homepage */}
 			<Routes>
 				<Route
-					path="*"
+					path="/"
 					element={
 						<Home>
 							<>
