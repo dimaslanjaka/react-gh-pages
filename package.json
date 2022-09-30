@@ -4,19 +4,19 @@
   "homepage": "https://dimaslanjaka.github.io/react-gh-pages",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.0",
-    "@types/node": "^16.11.21",
-    "@types/react": "^17.0.38",
-    "@types/react-dom": "^17.0.11",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^29.1.1",
+    "@types/node": "^18.7.23",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
-    "react-scripts": "5.0.0",
-    "typescript": "^4.5.4",
-    "web-vitals": "^2.1.3"
+    "react-scripts": "5.0.1",
+    "typescript": "^4.8.4",
+    "web-vitals": "^3.0.2"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -45,8 +45,9 @@
     ]
   },
   "devDependencies": {
+    "@types/gtag.js": "^0.0.11",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^4.0.0"
   }
 }
