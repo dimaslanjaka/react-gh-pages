@@ -2,22 +2,31 @@ import React from "react";
 import { createRoot, hydrateRoot, Root } from "react-dom/client";
 import { Metric } from "web-vitals";
 import App from "./App";
+import { GTAGID } from "./config";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 const container = document.getElementById("root");
-const mainApp = (
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>
-);
+const AppWrapper = () => {
+	React.useEffect(() => {
+		if (typeof window.gtag === "function") {
+			gtag("js", new Date());
+			gtag("config", GTAGID);
+		}
+	});
+	return (
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>
+	);
+};
 
 let root: Root;
 if (container?.hasChildNodes()) {
-	root = hydrateRoot(container, mainApp);
+	root = hydrateRoot(container, <AppWrapper />);
 } else {
 	root = createRoot(container!);
-	root.render(mainApp);
+	root.render(<AppWrapper />);
 }
 
 // If you want to start measuring performance in your app, pass a function
@@ -35,7 +44,7 @@ function sendToAnalytics(metric: Metric) {
 	if (typeof window.gtag === "function") {
 		// https://developers.google.com/analytics/devguides/collection/gtagjs
 		// https://developers.google.com/gtagjs/reference/event#timing_complete
-		window.gtag("event", "coreWebVitals", {});
+		window.gtag("event", "coreWebVitals", properties);
 	} else {
 		console.log("google analystic not installed", properties);
 	}
