@@ -1,6 +1,6 @@
 # React With Dynamic Routes For Github Pages
 
-[demo](https://dimaslanjaka.github.io/react-gh-pages)
+[LIVE DEMO](https://dimaslanjaka.github.io/react-gh-pages)
 
 ## Step by step to using this project
 
