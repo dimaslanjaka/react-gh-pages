@@ -14,3 +14,7 @@ build production
 npm run build
 ```
 
+deploy to github pages
+```bash
+npm run deploy
+```
