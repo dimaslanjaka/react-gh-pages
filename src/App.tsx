@@ -1,6 +1,7 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Adsense } from "./components/adsense/Adsense";
+import { OutboundLink } from "./components/OutboundLink";
 import pages from "./data.json";
 import logo from "./logo.svg";
 
@@ -15,14 +16,14 @@ function Home(props: HomeProps) {
 				<p>
 					Edit <code>src/App.tsx</code> and save to reload.
 				</p>
-				<a
+				<OutboundLink
 					className="App-link"
 					href="https://reactjs.org"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					Learn React
-				</a>
+				</OutboundLink>
 
 				<div>{props.children}</div>
 

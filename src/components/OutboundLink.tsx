@@ -84,6 +84,7 @@ const OutboundLink_func = (
 				</Link>
 			);
 		} else if (/^https:\/\//.test(props.href)) {
+			console.log(process.env.PUBLIC_URL);
 			const parseSiteUrl = new URL(process.env.PUBLIC_URL);
 			const parseHref = new URL(props.href);
 			if (parseHref.host == parseSiteUrl.host) {
