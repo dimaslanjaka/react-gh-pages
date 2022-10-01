@@ -9,6 +9,11 @@
 
 ## Step by step to using this project
 
+install project
+```bash
+npm install
+```
+
 change homepage url from `package.json`
 
 develop
