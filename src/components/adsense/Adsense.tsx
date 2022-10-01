@@ -66,7 +66,7 @@ export function AdsElement({
 			window.adsbygoogle = window.adsbygoogle || [];
 			window.adsbygoogle.push(p);
 		}
-	}, [client, pageLevelAds, rest.id]);
+	}, [client, pageLevelAds, slot]);
 
 	// component did unmount
 
