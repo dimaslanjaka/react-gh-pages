@@ -97,6 +97,16 @@ export function AdsElement({
 	);
 }
 
+/**
+ * fix |uncaught exception: TagError: adsbygoogle.push() error: All ins elements in the DOM with class=adsbygoogle already have ads in them.
+ */
+
+/**
+ * ensure adsense not duplicate
+ * @param prevProps
+ * @param nextProps
+ * @returns
+ */
 function areEqual(prevProps: AdsenseInsProps, nextProps: AdsenseInsProps) {
 	/*
   return true if passing nextProps to render would return
