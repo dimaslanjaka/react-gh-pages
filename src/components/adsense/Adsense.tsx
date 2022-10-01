@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { isDev } from "../../config";
+import { useScript } from "../../utils/useScript";
 import "./Adsense.scss";
 
 export interface AdsenseInsProps {
 	[key: string]: any;
 	key?: string;
+	id?: string;
 	className?: string;
 	style?: React.CSSProperties;
 	client: string;
@@ -29,7 +31,7 @@ export interface AdsenseInsProps {
  * // data-ad-layout -> layout, data-ad-slot -> slot
  * <Adsense client="ca-pub-xxx" slot="123456" layout="responsive" style={{ display: block }} />
  */
-export function Adsense({
+export function AdsElement({
 	className = "",
 	style = { display: "block" },
 	client,
@@ -45,9 +47,9 @@ export function Adsense({
 	children,
 	...rest
 }: AdsenseInsProps) {
-	/*useScript({
+	useScript({
 		url: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-	});*/
+	});
 
 	// component did mount
 	useEffect(() => {
@@ -63,17 +65,8 @@ export function Adsense({
 			window.adsense_items.push(p);
 			window.adsbygoogle = window.adsbygoogle || [];
 			window.adsbygoogle.push(p);
-
-			const script = document.createElement("script");
-			script.src =
-				"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-			script.async = true;
-			document.body.appendChild(script);
-			return () => {
-				document.body.removeChild(script);
-			};
 		}
-	}, [client, pageLevelAds]);
+	}, [client, pageLevelAds, rest.id]);
 
 	// component did unmount
 
@@ -96,8 +89,23 @@ export function Adsense({
 		properties["data-full-width-responsive"] = responsive;
 	if (adTest === "true") properties["data-adtest"] = adTest;
 	return (
-		<ins key={key} className={`adsbygoogle ${className}`} {...properties}>
-			{children}
-		</ins>
+		<div key={key || rest.id}>
+			<ins className={`adsbygoogle ${className}`} {...properties}>
+				{children}
+			</ins>
+		</div>
 	);
 }
+
+function areEqual(prevProps: AdsenseInsProps, nextProps: AdsenseInsProps) {
+	/*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+	if (JSON.stringify(prevProps) === JSON.stringify(nextProps)) {
+		return true; // donot re-render
+	}
+	return false; // will re-render
+}
+export const Adsense = React.memo(AdsElement, areEqual);

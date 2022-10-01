@@ -1,6 +1,6 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Adsense } from "./components/adsense/Adsense";
+import { AdsElement } from "./components/adsense/Adsense";
 import { OutboundLink } from "./components/OutboundLink";
 import pages from "./data.json";
 import logo from "./logo.svg";
@@ -28,12 +28,13 @@ function Home(props: HomeProps) {
 				<div>{props.children}</div>
 
 				<div className="adsw">
-					<Adsense
-						style={{ display: "block" }}
+					<AdsElement
+						id="ads1"
+						style={{ display: "block", textAlign: "center" }}
+						data-ad-layout="in-article"
+						data-ad-format="fluid"
 						client="ca-pub-2188063137129806"
-						slot="2667720583"
-						format="auto"
-						responsive="true"
+						slot="8481296455"
 					/>
 				</div>
 			</header>

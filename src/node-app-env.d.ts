@@ -13,6 +13,15 @@ export type DeepPartial<T> = T extends object
 	  }
 	: T;
 
+/**
+ * remove readonly modifier
+ */
+type Writeable<T> = { -readonly [P in keyof T]: T[P] };
+/**
+ * remove readonly modifier
+ */
+type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> };
+
 declare namespace NodeJS {
 	interface ProcessEnv {
 		readonly NODE_ENV: "development" | "production" | "test";
