@@ -9,6 +9,7 @@ interface HomeProps {
 	children?: JSX.Element;
 }
 function Home(props: HomeProps) {
+	document.title = "Homepage - React for github pages";
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -43,6 +44,7 @@ function Home(props: HomeProps) {
 }
 
 function PageItem(props: typeof pages[number]) {
+	document.title = `${props.name} ${props.id} - React for github pages`;
 	return (
 		<div className="page">
 			<div>
