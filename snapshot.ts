@@ -61,6 +61,7 @@ async function navigatorListener() {
     }
     window.close()
   }
+  // uncomment below for run npm script
   // server.closeAllConnections()
 }
 
