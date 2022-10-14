@@ -1,3 +1,3 @@
 //import { ServerSnapshot } from 'react-prerender-it'
-import { ServerSnapshot } from '../src/index'
+const { ServerSnapshot } = require('../')
 ServerSnapshot({ source: 'build', destDir: 'tmp', registerStatic: [] })
