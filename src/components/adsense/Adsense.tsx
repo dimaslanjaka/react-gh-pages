@@ -61,10 +61,10 @@ export function AdsElement({
 			p.enable_page_level_ads = true;
 		}
 
-		if (typeof window === "object") {
-			window.adsense_items.push(p);
-			window.adsbygoogle = window.adsbygoogle || [];
-			window.adsbygoogle.push(p);
+		if (typeof window === "object" && (window as any).adsense_items) {
+			(window as any).adsense_items.push(p);
+			(window as any).adsbygoogle = (window as any).adsbygoogle || [];
+			(window as any).adsbygoogle.push(p);
 		}
 	}, [client, pageLevelAds, slot]);
 

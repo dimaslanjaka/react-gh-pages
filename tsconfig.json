@@ -6,7 +6,11 @@
 	},
 	"compilerOptions": {
 		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"esnext"
+		],
 		"outDir": "dist",
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -22,5 +26,12 @@
 		"noEmit": true,
 		"jsx": "react-jsx"
 	},
-	"include": ["src", "./*.js", "./*.ts"]
+	"include": [
+		"src",
+		"./*.js",
+		"./*.ts"
+	],
+	"typeAcquisition": {
+		"enable": true
+	}
 }
