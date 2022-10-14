@@ -53,10 +53,10 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "gh-pages": "^4.0.0",
-    "react-prerender-it": "git+https://github.com/dimaslanjaka/react-prerender-it",
     "jsdom": "^20.0.1",
     "prettier": "^2.7.1",
     "puppeteer": "^19.0.0",
+    "react-prerender-it": "git+https://github.com/dimaslanjaka/react-prerender-it",
     "sass": "^1.55.0",
     "ts-node": "^10.9.1"
   }
