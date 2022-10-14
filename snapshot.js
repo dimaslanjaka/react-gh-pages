@@ -13,5 +13,7 @@ if (/dev/i.test(process.env.NODE_ENV)) {
 ServerSnapshot({
   source: join(__dirname, 'build'),
   dest: join(__dirname, 'tmp'),
-  registerStatic: []
+  registerStatic: [],
+  routes: [],
+  autoRoutes: true
 });
