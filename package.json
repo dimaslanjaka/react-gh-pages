@@ -21,11 +21,11 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "cross-env-shell NODE_ENV=development PORT=4000 BROWSER=none DEBUG=chimera* react-scripts start",
+    "start": "cross-env-shell NODE_ENV=development PORT=4000 BROWSER=none DEBUG=prerender** react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "update": "npx npm-check-updates -u"
+    "update": "npx npm-check-updates -u && npm update react-prerender-it"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +53,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "gh-pages": "^4.0.0",
+    "react-prerender-it": "git+https://github.com/dimaslanjaka/react-prerender-it",
     "jsdom": "^20.0.1",
     "prettier": "^2.7.1",
     "puppeteer": "^19.0.0",
