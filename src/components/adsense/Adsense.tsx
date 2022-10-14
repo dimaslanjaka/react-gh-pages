@@ -61,8 +61,8 @@ export function AdsElement({
 			p.enable_page_level_ads = true;
 		}
 
-		if (typeof window === "object" && (window as any).adsense_items) {
-			(window as any).adsense_items.push(p);
+		if (typeof window === "object") {
+			if ((window as any).adsense_items) (window as any).adsense_items.push(p);
 			(window as any).adsbygoogle = (window as any).adsbygoogle || [];
 			(window as any).adsbygoogle.push(p);
 		}
@@ -109,10 +109,10 @@ export function AdsElement({
  */
 function areEqual(prevProps: AdsenseInsProps, nextProps: AdsenseInsProps) {
 	/*
-  return true if passing nextProps to render would return
-  the same result as passing prevProps to render,
-  otherwise return false
-  */
+	return true if passing nextProps to render would return
+	the same result as passing prevProps to render,
+	otherwise return false
+	*/
 	if (JSON.stringify(prevProps) === JSON.stringify(nextProps)) {
 		return true; // donot re-render
 	}
