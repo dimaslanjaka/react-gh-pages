@@ -17,7 +17,12 @@ function Home(props: HomeProps) {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <OutboundLink className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+        <OutboundLink
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Learn React
         </OutboundLink>
 
@@ -43,7 +48,7 @@ function PageItem(props: typeof pages[number]) {
   return (
     <div className="page">
       <div>
-        <Link to="/">Go Home</Link>
+        <Link to="/">Go Back</Link>
       </div>
       <div>ID: {props.id}</div>
       <div>
@@ -59,9 +64,15 @@ function App() {
   const routes = (
     <Routes>
       {pages.map((page) => {
-        const pathname = process.env.PUBLIC_URL + '/page/' + page.id + '.html';
+        const pathname = '/page/' + page.id + '.html';
         //console.log(pathname);
-        return <Route key={page.id} path={pathname} element={<PageItem {...page} />}></Route>;
+        return (
+          <Route
+            key={page.id}
+            path={pathname}
+            element={<PageItem {...page} />}
+          ></Route>
+        );
       })}
     </Routes>
   );
@@ -75,19 +86,15 @@ function App() {
           path="/"
           element={
             <Home>
-              <>
-                {getRoutes(routes)
-                  .map((str) => {
-                    return <Link to={str}>{str}</Link>;
-                  })
-                  .reduce((prev, curr) => (
-                    <>
-                      {prev}
-                      <p></p>
-                      {curr}
-                    </>
-                  ))}
-              </>
+              {getRoutes(routes)
+                .map((str) => {
+                  return <Link to={str}>{str}</Link>;
+                })
+                .reduce((prev, curr) => (
+                  <>
+                    {prev} <br /> {curr}
+                  </>
+                ))}
             </Home>
           }
         ></Route>
@@ -101,7 +108,9 @@ function Footer() {
   return (
     <footer>
       <span>Source: </span>
-      <a href="https://github.com/dimaslanjaka/react-gh-pages">https://github.com/dimaslanjaka/react-gh-pages</a>
+      <a href="https://github.com/dimaslanjaka/react-gh-pages">
+        https://github.com/dimaslanjaka/react-gh-pages
+      </a>
     </footer>
   );
 }

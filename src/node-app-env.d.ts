@@ -2,16 +2,16 @@
  * reverse Partial interfaces to Immutable interface
  */
 export type unPartial<T> = {
-	[P in keyof T]-?: T[P];
+  [P in keyof T]-?: T[P];
 };
 /**
  * Turn Immutable interfaces to Mutable interfaces
  */
 export type DeepPartial<T> = T extends object
-	? {
-			[P in keyof T]?: DeepPartial<T[P]>;
-	  }
-	: T;
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
 
 /**
  * remove readonly modifier
@@ -20,11 +20,13 @@ export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 /**
  * remove readonly modifier
  */
-export type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> };
+export type DeepWriteable<T> = {
+  -readonly [P in keyof T]: DeepWriteable<T[P]>;
+};
 
 declare namespace NodeJS {
-	interface ProcessEnv {
-		readonly NODE_ENV: "development" | "production" | "test";
-		readonly PUBLIC_URL: string;
-	}
+  interface ProcessEnv {
+    readonly NODE_ENV: 'development' | 'production' | 'test';
+    readonly PUBLIC_URL: string;
+  }
 }

@@ -8,9 +8,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.1.2",
-    "@types/node": "^18.11.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "axios": "^1.1.2",
+    "bluebird": "^3.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
@@ -46,9 +47,11 @@
     ]
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.37",
     "@types/express": "^4.17.14",
     "@types/gtag.js": "^0.0.12",
     "@types/jsdom": "^20.0.0",
+    "@types/node": "^18.11.0",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
     "cross-env": "^7.0.3",

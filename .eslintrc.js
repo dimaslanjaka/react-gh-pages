@@ -1,4 +1,6 @@
-const prettierConfig = require('./.prettierrc.json')
+const prettierConfig = require('./.prettierrc.json');
+delete prettierConfig.$schema;
+//prettierConfig.semi = false;
 
 module.exports = {
   root: true,
@@ -27,7 +29,7 @@ module.exports = {
     }
   ],
   rules: {
-    'prettier/prettier': ['error', prettierConfig],
+    'prettier/prettier': ['error', JSON.parse(JSON.stringify(prettierConfig))],
     '@typescript-eslint/explicit-function-return-type': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
@@ -49,4 +51,4 @@ module.exports = {
     'arrow-body-style': 'off',
     'prefer-arrow-callback': 'off'
   }
-}
+};
