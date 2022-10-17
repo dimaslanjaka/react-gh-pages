@@ -19,7 +19,46 @@ const About = () => {
   return (
     <Layout>
       <h2>About</h2>
-      <div className="container">React for github pages</div>
+      <div className="container">
+        <p>React for github pages</p>
+        <p>
+          <b className="text-center">External Links</b>
+          <a
+            href="https://google.com"
+            rel="nofollow noopener noreferer"
+            title="google"
+          >
+            Google
+          </a>
+          <a
+            href="https://facebook.com"
+            rel="nofollow noopener noreferer"
+            title="facebook"
+          >
+            Facebook
+          </a>
+          <a
+            href="https://github.com"
+            rel="nofollow noopener noreferer"
+            title="github"
+          >
+            GitHub
+          </a>
+        </p>
+        <p>
+          <b className="text-center">Internal Links</b>
+          <ul className="inline">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <a href="https://www.webmanajemen.com/">
+                Website Management Indonesia
+              </a>
+            </li>
+          </ul>
+        </p>
+      </div>
     </Layout>
   );
 };
