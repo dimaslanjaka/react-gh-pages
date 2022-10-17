@@ -17,6 +17,6 @@ ServerSnapshot({
   routes: [],
   autoRoutes: true,
   callback: function () {
-    console.log('snapshot done');
+    console.log('snapshot done', 'dev=' + /dev/i.test(process.env.NODE_ENV));
   }
 });
