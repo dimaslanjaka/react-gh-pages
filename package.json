@@ -28,7 +28,9 @@
     "build": "cross-env-shell DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "update": "npx npm-check-updates -u && npm update react-prerender-it"
+    "update": "npx npm-check-updates -u && npm update react-prerender-it",
+    "install-local": "npm un react-prerender-it && npm i -D file:../",
+    "install-repo": "npm un react-prerender-it && npm i -D git+https://github.com/dimaslanjaka/react-prerender-it.git"
   },
   "eslintConfig": {
     "extends": [
@@ -66,7 +68,7 @@
     "jsdom": "^20.0.1",
     "prettier": "^2.7.1",
     "puppeteer": "^19.0.0",
-    "react-prerender-it": "git+https://github.com/dimaslanjaka/react-prerender-it",
+    "react-prerender-it": "file:..",
     "sass": "^1.55.0",
     "ts-node": "^10.9.1"
   }
