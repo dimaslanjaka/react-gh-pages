@@ -20,7 +20,7 @@ export function PageItem(props: typeof pages[number]) {
         </div>
         <div className="adsw">
           <Adsense
-            id="ads2"
+            id="adsPage"
             style={{ display: 'block', textAlign: 'center' }}
             data-ad-layout="in-article"
             data-ad-format="fluid"

@@ -1,9 +1,23 @@
 import { DiscussionEmbed } from 'disqus-react';
+import { Adsense } from '../components/adsense/Adsense';
 import { Layout } from '../components/Layout';
 
 export function DisqusPage() {
   return (
     <Layout>
+      <div className="row mb-3">
+        <div className="adsw">
+          <Adsense
+            id="adsDisqus"
+            style={{ display: 'block', textAlign: 'center' }}
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            client="ca-pub-2188063137129806"
+            slot="8481296455"
+          />
+        </div>
+      </div>
+
       <div className="row">
         <div className="col-lg-6 col-12 mb-3">
           <div className="text-center">
