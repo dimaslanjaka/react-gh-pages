@@ -15,5 +15,8 @@ ServerSnapshot({
   dest: join(__dirname, 'tmp'),
   registerStatic: [],
   routes: [],
-  autoRoutes: true
+  autoRoutes: true,
+  callback: function () {
+    console.log('done');
+  }
 });
