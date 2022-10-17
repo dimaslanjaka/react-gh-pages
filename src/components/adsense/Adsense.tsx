@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { isDev } from '../../config';
-import { useScript } from '../../utils/useScript';
 import './Adsense.scss';
 
 export interface AdsenseInsProps {
@@ -47,29 +46,6 @@ export function AdsElement({
   children,
   ...rest
 }: AdsenseInsProps) {
-  useScript({
-    url: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
-  });
-
-  // component did mount
-  useEffect(() => {
-    const p: AdsObject = {
-      google_ad_client: ''
-    };
-    if (pageLevelAds) {
-      p.google_ad_client = client;
-      p.enable_page_level_ads = true;
-    }
-
-    if (typeof window === 'object') {
-      if ((window as any).adsense_items) (window as any).adsense_items.push(p);
-      (window as any).adsbygoogle = (window as any).adsbygoogle || [];
-      (window as any).adsbygoogle.push(p);
-    }
-  }, [client, pageLevelAds, slot]);
-
-  // component did unmount
-
   // skip produce adsense ins when disabled == true
   if (disabled) return <></>;
 
@@ -85,11 +61,53 @@ export function AdsElement({
   if (layout.length > 0) properties['data-ad-layout'] = layout;
   if (layoutKey.length > 0) properties['data-ad-layout-key'] = layoutKey;
   if (format.length > 0) properties['data-ad-format'] = format;
-  if (responsive === 'true')
+  if (responsive === 'true') {
     properties['data-full-width-responsive'] = responsive;
+  }
   if (adTest === 'true') properties['data-adtest'] = adTest;
+
+  const adsPush = () => {
+    const banners = document.querySelectorAll('ins');
+    if (banners.length > 0) {
+      for (let i = 0; i < banners.length; i++) {
+        const ins = banners[i];
+        if (String(ins.innerHTML).trim().length === 0) {
+          const opt: Record<string, any> = {
+            google_ad_client: ins.getAttribute('data-ad-client')
+          };
+          if (pageLevelAds) {
+            opt.enable_page_level_ads = true;
+          }
+          ((window as any).adsbygoogle =
+            (window as any).adsbygoogle || []).push(opt);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    const pageads = document.querySelectorAll(
+      'script[src*="pagead2.googlesyndication.com"]'
+    );
+    if (pageads.length == 0) {
+      // import script pagead when not yet imported
+      const script = document.createElement('script');
+      script.src =
+        'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+      script.async = true;
+      script.setAttribute('crossorigin', 'anonymous');
+      // call push onload
+      script.onload = adsPush;
+
+      document.body.appendChild(script);
+    } else {
+      // call push
+      adsPush();
+    }
+  }, [JSON.stringify(properties)]);
+
   return (
-    <div key={key || rest.id}>
+    <div key={key || rest.id + className}>
       <ins className={`adsbygoogle ${className}`} {...properties}>
         {children}
       </ins>
@@ -118,4 +136,5 @@ function areEqual(prevProps: AdsenseInsProps, nextProps: AdsenseInsProps) {
   }
   return false; // will re-render
 }
+
 export const Adsense = React.memo(AdsElement, areEqual);

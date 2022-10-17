@@ -1,127 +1,84 @@
+import React from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { AdsElement } from './components/adsense/Adsense';
-import { OutboundLink } from './components/OutboundLink';
+import { Layout } from './components/Layout';
 import pages from './data.json';
-import logo from './logo.svg';
+import { DisqusPage } from './page/DisqusPage';
+import { Home } from './page/Home';
+import { PageItem } from './page/PageItem';
 
-interface HomeProps {
-  children?: JSX.Element;
-}
-function Home(props: HomeProps) {
-  document.title = 'Homepage - React for github pages';
+const Gallery = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <OutboundLink
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </OutboundLink>
-
-        <div>{props.children}</div>
-
-        <div className="adsw">
-          <AdsElement
-            id="ads1"
-            style={{ display: 'block', textAlign: 'center' }}
-            data-ad-layout="in-article"
-            data-ad-format="fluid"
-            client="ca-pub-2188063137129806"
-            slot="8481296455"
-          />
-        </div>
-      </header>
-    </div>
+    <Layout>
+      <h2>Gallery</h2>
+    </Layout>
   );
-}
+};
 
-function PageItem(props: typeof pages[number]) {
-  document.title = `${props.name} ${props.id} - React for github pages`;
+const About = () => {
   return (
-    <div className="page">
-      <div>
-        <Link to="/">Go Back</Link>
-      </div>
-      <div>ID: {props.id}</div>
-      <div>
-        <pre>
-          <code>{JSON.stringify(props, null, 2)}</code>
-        </pre>
-      </div>
-    </div>
+    <Layout>
+      <h2>About</h2>
+      <div className="container">React for github pages</div>
+    </Layout>
   );
-}
+};
 
 function App() {
-  const routes = (
-    <Routes>
-      {pages.map((page) => {
-        const pathname = '/page/' + page.id + '.html';
-        //console.log(pathname);
-        return (
-          <Route
-            key={page.id}
-            path={pathname}
-            element={<PageItem {...page} />}
-          ></Route>
-        );
-      })}
-    </Routes>
-  );
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Footer />
-      {routes}
-      {/** default not found and index to homepage */}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home>
-              {getRoutes(routes)
-                .map((str) => {
-                  return <Link to={str}>{str}</Link>;
-                })
-                .reduce((prev, curr) => (
-                  <>
-                    {prev} <br /> {curr}
-                  </>
-                ))}
-            </Home>
-          }
-        ></Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
-  );
-}
+      <div>
+        <Routes>
+          {/** static route */}
+          <Route
+            path="/"
+            element={
+              <Home>
+                <ul className="inline">
+                  <li>
+                    <Link to="/about">About</Link>
+                  </li>
+                  <li>
+                    <Link to="/gallery">Gallery</Link>
+                  </li>
+                  <li>
+                    <Link to="/disqus">Disqus Comment</Link>
+                  </li>
+                </ul>
+              </Home>
+            }
+            index
+          ></Route>
+          <Route path="/about" element={<About />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/disqus" element={<DisqusPage />} />
 
-function Footer() {
-  return (
-    <footer>
-      <span>Source: </span>
-      <a href="https://github.com/dimaslanjaka/react-gh-pages">
-        https://github.com/dimaslanjaka/react-gh-pages
-      </a>
-    </footer>
+          {pages.map((page) => {
+            const pathname = '/page/' + page.id + '.html';
+            //console.log(pathname);
+            return (
+              <Route
+                key={page.id}
+                path={pathname}
+                element={<PageItem {...page} />}
+              ></Route>
+            );
+          })}
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
 export default App;
 
+export type propx = React.PropsWithChildren;
+
 /**
- * Get list of paths
+ * Get list of paths from <Routes><Route>
  * @param routes
  */
-function getRoutes(routes: JSX.Element) {
+function _getRoutes(routes: JSX.Element) {
   const paths: any[] = [];
   /**
    * Walk in list of routes tree

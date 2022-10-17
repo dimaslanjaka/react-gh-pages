@@ -10,8 +10,10 @@
     "@types/jest": "^29.1.2",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "axios": "^1.1.2",
+    "axios": "^1.1.3",
     "bluebird": "^3.7.2",
+    "bootstrap": "^5.2.2",
+    "disqus-react": "^1.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
@@ -22,8 +24,8 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "cross-env-shell NODE_ENV=development PORT=4000 BROWSER=none DEBUG=prerender** react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env-shell DISABLE_ESLINT_PLUGIN=true NODE_ENV=development PORT=4000 BROWSER=none DEBUG=prerender** react-scripts start",
+    "build": "cross-env-shell DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "update": "npx npm-check-updates -u && npm update react-prerender-it"
