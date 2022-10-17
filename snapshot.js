@@ -12,11 +12,11 @@ if (/dev/i.test(process.env.NODE_ENV)) {
 
 ServerSnapshot({
   source: join(__dirname, 'build'),
-  dest: join(__dirname, 'tmp'),
+  dest: join(__dirname, 'tmp/generated'),
   registerStatic: [],
   routes: [],
   autoRoutes: true,
   callback: function () {
-    console.log('done');
+    console.log('snapshot done');
   }
 });
